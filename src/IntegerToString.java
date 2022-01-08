@@ -4,7 +4,7 @@
 import java.util.*;
 public class IntegerToString {
 	public static void main(String args[]) {
-		HashMap<Integer,String> mapping = new HashMap()
+		HashMap<Character,String> mapping = new HashMap()
         {{
             put('0', "Zero");
             put('1', "One");
@@ -17,30 +17,33 @@ public class IntegerToString {
             put('8', "Eight");
             put('9', "Nine");
         }};
-
-        System.out.println("Enter the number you want to convert");
-        Scanner sc = new Scanner(System.in);
-        String s = "";
-        long l = sc.nextLong();
-        if(l<0){
-            s = "-";
+        while(true) {
+	        System.out.println("Enter the number you want to convert or enter exit");
+	        Scanner sc = new Scanner(System.in);
+	        String s = "";
+	        if(s.equals("exit")) {
+	        	break;
+	        }
+	        long l = sc.nextLong();
+	        if(l<0){
+	            s = "-";
+	        }
+	        char a[] = String.valueOf(l).toCharArray();
+	        for (int i =0; i<a.length; i++) {
+	            // Taking care of all the numbers
+	
+	
+	            if(mapping.containsKey(a[i])) {
+	                // Adjusting spaces
+	                if(s.length() > 1){
+	                    s+=" ";
+	                }
+	                s += mapping.get(a[i]);
+	            }
+	        }
+	        System.out.println(s);
+	        System.out.println();
         }
-        char a[] = String.valueOf(l).toCharArray();
-        for (int i =0; i<a.length; i++) {
-            // Taking care of all the numbers
-
-
-            if(mapping.containsKey(a[i])) {
-                // Adjusting spaces
-                if(s.length() > 1){
-                    s+=" ";
-                }
-                s += mapping.get(a[i]);
-            }
-        }
-        System.out.println(s);
-		
-		
 		
 	}
 }
